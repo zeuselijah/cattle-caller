@@ -1,7 +1,7 @@
 // dependencies
 const express = require('express');
 const mongoose = require('mongoose');
-const methodOverride = require('method-override');
+//const methodOverride = require('method-override');
 
 // intialize the app
 const app = express();
@@ -20,14 +20,20 @@ db.on('connected', () => console.log('Connected to MongoDB'));
 db.on('error', (err) => console.log('MongoDB Error: ' + err.message));
 
 // mount middleware
-app.arguments(express.urlencoded({ extended: false}));
-app.arguments(methodOverride('_method'));
+app.use(express.urlencoded({ extended: false}));
+//app.arguments(methodOverride('_method'));
 
 // mount routes
+
+
 // Index route
 // New route
 // Update route
 // Create route
+app.post('/cattle-caller', (req, res) => {
+    res.send(req.body);
+});
+
 // Update route
 // Delete route
 // Edit route
