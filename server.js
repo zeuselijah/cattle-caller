@@ -5,14 +5,19 @@ const methodOverride = require('method-override');
 
 // intialize the app
 const app = express();
+
 // configure settings
 require('dotenv').config();
 
 const PORT = process.env.PORT;
 const DATABASE_URI = process.env.DATABASE_URI;
+const db = mongoose.connection;
 
 // connect to mongodb
 mongoose.connect(DATABASE_URI);
+// add mongoDB connected and error event listener
+db.on('connected', () => console.log('Connected to MongoDB'));
+db.on('error', (err) => console.log('MongoDB Error: ' + err.message));
 
 // mount middleware
 app.arguments(express.urlencoded({ extended: false}));
