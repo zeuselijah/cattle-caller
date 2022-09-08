@@ -9,6 +9,10 @@ const app = express();
 require('dotenv').config();
 
 const PORT = process.env.PORT;
+const DATABASE_URI = process.env.DATABASE_URI;
+
+// connect to mongodb
+mongoose.connect(DATABASE_URI);
 
 // mount middleware
 app.arguments(express.urlencoded({ extended: false}));
