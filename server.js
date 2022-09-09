@@ -1,6 +1,7 @@
 // dependencies
 const express = require('express');
 const mongoose = require('mongoose');
+const Cattle = require('./models/cattle') 
 //const methodOverride = require('method-override');
 
 // intialize the app
@@ -28,10 +29,16 @@ app.use(express.urlencoded({ extended: false}));
 
 // Index route
 // New route
+app.get('/cattle/new', (req, res) => {
+    res.render('new.ejs');
+});
+
 // Update route
 // Create route
-app.post('/cattle-caller', (req, res) => {
-    res.send(req.body);
+app.post('/cattle', (req, res) => {
+    Cattle.create(req.body, (err, createdCattle) => {
+        res.send(createdCattle);
+    });
 });
 
 // Update route
