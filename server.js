@@ -26,6 +26,24 @@ app.use(express.urlencoded({ extended: false}));
 
 // mount routes
 
+// Homepage redirect route
+app.get('/', (req, res) => res.redirect('/cattle'));
+
+// Seed Route
+app.get('/cattle/seed', (req, res) =>{
+    const data = [
+        {
+            img: src = 'https://i.imgur.com/E72LWhh.jpg',
+            breed: 'Angus',
+            origin: 'Aberdeen and Angus Counties of Scotland',
+            color: 'Solid black',
+            description: 'Polled (hornless), moderate frame size, excellent meat quality (nice marbling), and calving ease.'
+        }
+    ];
+    Cattle.insertMany(data, (err, result) => {
+        res.redirect('/cattle');
+    });
+});
 
 // Index route
 app.get('/cattle', (req, res) => {
@@ -45,7 +63,7 @@ app.get('/cattle/new', (req, res) => {
 // Create route
 app.post('/cattle', (req, res) => {
     Cattle.create(req.body, (err, createdCattle) => {
-        res.send(createdCattle);
+        res.redirect('/cattle');
     });
 });
 
@@ -53,7 +71,11 @@ app.post('/cattle', (req, res) => {
 // Delete route
 // Edit route
 // Show route
-
+app.get('/cattle/:id', (req, res) => {
+    Cattle.findById(req.params.id, (err, foundCattle) => {
+        res.render('show.ejs', {'cattle': foundCattle})
+    });
+});
 
 // tell the app to listen
 app.listen(PORT, () => {
