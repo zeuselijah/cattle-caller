@@ -28,6 +28,14 @@ app.use(express.urlencoded({ extended: false}));
 
 
 // Index route
+app.get('/cattle', (req, res) => {
+    Cattle.find({}, (err, foundCattle) => {
+        res.render('index.ejs', { 
+            'cattle': foundCattle 
+        });
+    });
+});
+
 // New route
 app.get('/cattle/new', (req, res) => {
     res.render('new.ejs');
