@@ -31,18 +31,13 @@ app.get('/', (req, res) => res.redirect('/cattle'));
 
 // Seed Route
 app.get('/cattle/seed', (req, res) =>{
-    const data = [
-        {
-            img: src = 'https://i.imgur.com/E72LWhh.jpg',
-            breed: 'Angus',
-            origin: 'Aberdeen and Angus Counties of Scotland',
-            color: 'Solid black',
-            description: 'Polled (hornless), moderate frame size, excellent meat quality (nice marbling), and calving ease.'
-        }
-    ];
-    Cattle.insertMany(data, (err, result) => {
+    const data = require('./data.json');
+    Cattle.deleteMany({}, (err, result) => {
+        Cattle.insertMany(data, (err, result) => {
         res.redirect('/cattle');
     });
+})
+    
 });
 
 // Index route
@@ -62,6 +57,7 @@ app.get('/cattle/new', (req, res) => {
 // Update route
 // Create route
 app.post('/cattle', (req, res) => {
+    req.body.completed = !!req.body.completed;
     Cattle.create(req.body, (err, createdCattle) => {
         res.redirect('/cattle');
     });

@@ -1,0 +1,37 @@
+[
+    {
+        "img": "https://i.imgur.com/pQT7fOb.jpg",
+        "breed": "Angus",
+        "origin": "Aberdeen and Angus Counties of Scotland",
+        "color": "Solid black",
+        "description": "Polled (hornless), moderate frame size, excellent meat quality (nice marbling), and calving ease."
+    },
+    {
+        "img": "https://i.imgur.com/E72LWhh.jpg",
+        "breed": "Brangus",
+        "origin": "Jeanerette, Louisiana",
+        "color": "Solid black",
+        "description": "Polled (honless), moderate frame size, disease resistant, heat resistant, and hardiness."
+    },
+    {
+        "img": "https://i.imgur.com/TaPq7tJ.jpg",
+        "breed": "Charolais",
+        "origin": "Charolles, France",
+        "color": "White to cream",
+        "description": "Horned or polled (hornless), medium to large frame size, heavily muscled, excellent growth rate, good feed conversion, and late maturity."
+    },
+    {
+        "img": "https://i.imgur.com/5XWpFYB.jpg",
+        "breed": "Gelbvieh",
+        "origin": "Bavaria, Germany",
+        "color": "Red to yellowish red",
+        "description": "Short horned or polled (hornless), excellent growth rate, good muscling, early puberty, amd calving ease."
+    },
+    {
+        "img": "https://i.imgur.com/9G5ZZKm.jpg",
+        "breed": "Hereford",
+        "origin": "Herefordshire, England",
+        "color": "Rust brown to deep rich red body with white on the face, crest, dewlap, underline, switch, and legs below the knee.",
+        "description": "Horns that typically curve down beside the head, moderate frame size, broad head, good foraging ability, docile, and good fertility."
+    }
+]
