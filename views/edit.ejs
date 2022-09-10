@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Cattle List</title>
+</head>
+<body>
+    <h1>Work That Cattle</h1>
+    <form action="/cattle/<%= cattle._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+        <label>Image:
+            <input type="file" name="image" value="<%= cattle.img %>">
+        </label><br>
+        <label>Breed:
+            <input type="text" name="breed" value="<%= cattle.breed %>">
+        </label><br>
+        <label>Origin:
+            <input type="text" name="origin" value="<%= cattle.origin %>">
+        </label><br>
+        <label>Color:
+            <input type="text" name="color" value="<%= cattle.color %>">
+        </label><br>
+        <label>Description:
+            <input type="text" name="description" value="<%= cattle.description %>">
+        </label><br>
+        <input type="submit" value="Add Cattle Breed"> 
+    </form>
+    <a href="/cattle">Back to Cattle List</a>
+</body>
+</html>

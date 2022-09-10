@@ -10,18 +10,26 @@
     <img src="<%= cattle.img %>" alt="" width="25%" height="25%">
     <ul>
         <li>
-            Breed:<%= cattle.breed %>
+            Breed: <%= cattle.breed %>
         </li>
         <li>
-            Origin:<%= cattle.origin %>
+            Origin: <%= cattle.origin %>
         </li>
         <li>
-            Color:<%= cattle.color %>
+            Color: <%= cattle.color %>
         </li>
         <li>
-            Description:<% cattle.description %>
+            Description: <%= cattle.description %>
         </li>
     </ul>
+
+<form action="/cattle/<%= cattle._id %>?_method=DELETE" method="POST">
+    <input type="submit" value="Remove this Cattle">
+</form>
+
+<a href="/cattle/<%= cattle._id %>/edit">Work This Cattle</a>
+<br>
+
     <a href="/cattle">Back to Cattle List</a>
     <br>
     <a href="/cattle/new">Add a Breed</a>

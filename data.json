@@ -33,5 +33,40 @@
         "origin": "Herefordshire, England",
         "color": "Rust brown to deep rich red body with white on the face, crest, dewlap, underline, switch, and legs below the knee.",
         "description": "Horns that typically curve down beside the head, moderate frame size, broad head, good foraging ability, docile, and good fertility."
+    },
+    {
+       "img": "https://i.imgur.com/BI4oxgb.jpg", 
+        "breed": "Limousin",
+        "origin": "Limousin and Macho regions of France",
+        "color": "Yellow straw to reddish gold with lighter circles around eyes and muzzle.",
+        "description": "Horns or polled (hornless), medium to large frame size, long bodied, small head, heavily muscled, high carcass yield, good growth rate, and good feed efficiency."
+    },
+    {
+        "img": "https://i.imgur.com/bSfsIt1.jpg", 
+        "breed": "Red Angus",
+        "origin": "British Isles.",
+        "color": "Red to reddish brown.",
+        "description": "Polled (hornless), moderate frame size, excellent meat quality (nicely marbled), calving ease, and hardy."
+    },
+    {
+        "img": "https://i.imgur.com/Nuws4gN.jpg", 
+        "breed": "Santa Gertrudis",
+        "origin": "Kingville, Texas (Developed on King Ranch).",
+        "color": "Deep cherry red to reddish brown.",
+        "description": "Horned or polled (hornless), moderate frame size, heat and tick resistant, calving ease, mothering ability and good milk supply."  
+    },
+    {
+        "img": "https://i.imgur.com/zE7Rpjr.jpg", 
+        "breed": "Simmental.",
+        "origin": "Simme Valley of Switzerland.",
+        "color": "Yellowish brown to straw to dark red with white markings on the head, brisket, belly, and lower parts of the legs.",
+        "description": "Horned or polled (hornless), large frame size, long and deep bodied, heavily muscled, high carcass yield, good growth rate, good feed efficiency, and good milk production." 
+    },
+    {
+        "img": "https://i.imgur.com/dNU7AUU.jpg", 
+        "breed": "Tartentaise.",
+        "origin": "Tartantaise Valley of France..",
+        "color": "Vary in color from light red to reddish brown.",
+        "description": "Horned or polled (hornless), moderate frame size, good milking ability, and calving ease."  
     }
 ]

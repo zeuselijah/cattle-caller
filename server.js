@@ -1,7 +1,11 @@
 // dependencies
 const express = require('express');
 const mongoose = require('mongoose');
-const Cattle = require('./models/cattle') 
+const methodOverride = require('method-override');
+const Cattle = require('./models/cattle')
+const cloudinary = require('cloudinary').v2;
+const expressFileUpload = require('express-fileupload');
+
 //const methodOverride = require('method-override');
 
 // intialize the app
@@ -12,6 +16,9 @@ require('dotenv').config();
 
 const PORT = process.env.PORT;
 const DATABASE_URI = process.env.DATABASE_URI;
+const API_KEY = process.env.API_KEY;
+const API_SECRET = process.env.API_SECRET;
+const CLOUD_NAME = process.env.CLOUD_NAME;
 const db = mongoose.connection;
 
 // connect to mongodb
@@ -21,8 +28,15 @@ db.on('connected', () => console.log('Connected to MongoDB'));
 db.on('error', (err) => console.log('MongoDB Error: ' + err.message));
 
 // mount middleware
+cloudinary.config({ 
+    cloud_name: CLOUD_NAME, 
+    api_key: API_KEY, 
+    api_secret: API_SECRET
+  });
+
+app.use(expressFileUpload({ createParentPath: true }));
 app.use(express.urlencoded({ extended: false}));
-//app.arguments(methodOverride('_method'));
+app.use(methodOverride('_method'));
 
 // mount routes
 
@@ -54,18 +68,50 @@ app.get('/cattle/new', (req, res) => {
     res.render('new.ejs');
 });
 
-// Update route
-// Create route
-app.post('/cattle', (req, res) => {
-    req.body.completed = !!req.body.completed;
-    Cattle.create(req.body, (err, createdCattle) => {
-        res.redirect('/cattle');
-    });
+// Delete route
+app.delete('/cattle/:id', (req, res) => {
+    Cattle.findByIdAndDelete(req.params.id, (err, deletedCattle) => {    
+    console.log('deletecCattle: ', deletedCattle);
+    res.redirect('/cattle');
+        });
 });
 
 // Update route
-// Delete route
+app.put('/cattle/:id', (req, res) => {
+    req.body.completed = !req.body.completed;
+
+    Cattle.findByIdAndUpdate(req.params.id, req.body, (err, oldCattleVersion) => {
+      res.redirect('/cattle/' + req.params.id);  
+    });
+});
+
+// Create route
+app.post('/cattle', (req, res) => {
+    console.log('its working');
+    console.log('api key', API_KEY);
+    const photo = req.files.image;
+    photo.mv(`./uploads/${photo.name}`);
+    cloudinary.uploader.upload(`./uploads/${photo.name}`).then(result => {
+          console.log(result)
+          req.body.img = result.secure_url
+          Cattle.create(req.body, (err, createdCattle) => {
+             res.redirect('/cattle');
+        });
+    })
+    .catch(err => {
+    res.redirect('/');
+    });
+});
+
 // Edit route
+app.get('/cattle/:id/edit', (req, res) => {
+    Cattle.findById(req.params.id, (err, foundCattle) => {
+        res.render('edit.ejs', {
+            'cattle': foundCattle
+        });
+    });
+});
+
 // Show route
 app.get('/cattle/:id', (req, res) => {
     Cattle.findById(req.params.id, (err, foundCattle) => {

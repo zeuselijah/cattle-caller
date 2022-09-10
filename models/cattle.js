@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const cattleSchema = new Schema({
-    img: {type: String,  required: true},
+    img: {type: String, default: 'https://cdn.pixabay.com/photo/2020/10/11/18/45/cow-5646719_1280.png'},
     breed: {type: String, required: true},
     origin: {type: String, required: true},
     color: {type: String, required: true},

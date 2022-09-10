@@ -12,7 +12,7 @@
         <% cattle.forEach(c => { %>
             <li>
                 <a href="/cattle/<%= c._id %>"> 
-                    <%= c.breed %>
+                    <img src="<%= c.img %>" alt="" width="25%" height="25%">
                 </a>
             </li>
        <% }); %>

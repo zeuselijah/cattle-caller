@@ -8,9 +8,9 @@
 </head>
 <body>
     <h1>New Cattle Page</h1>
-    <form action="/cattle" method="POST">
+    <form action="/cattle" method="POST" enctype="multipart/form-data">
         <label>Image:
-            <input type="text" name="image">
+            <input type="file" name="image">
         </label><br>
         <label>Breed:
             <input type="text" name="breed">
@@ -26,5 +26,6 @@
         </label><br>
         <input type="submit" value="Add Cattle Breed">
     </form>
+    <a href="/cattle">Back to Cattle List</a>
 </body>
 </html>
