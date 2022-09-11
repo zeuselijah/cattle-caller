@@ -7,8 +7,10 @@
     <title>Edit Cattle List</title>
 </head>
 <body>
-    <h1>Work That Cattle</h1>
+    <h1>Work This Cattle</h1>
     <form action="/cattle/<%= cattle._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+        
+        <img src="<%= cattle.img %>" alt="" width="25%" height="25%"><br>
         <label>Image:
             <input type="file" name="image" value="<%= cattle.img %>">
         </label><br>
@@ -24,7 +26,7 @@
         <label>Description:
             <input type="text" name="description" value="<%= cattle.description %>">
         </label><br>
-        <input type="submit" value="Add Cattle Breed"> 
+        <input type="submit" value="Update Cattle"> 
     </form>
     <a href="/cattle">Back to Cattle List</a>
 </body>

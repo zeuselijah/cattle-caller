@@ -2,10 +2,26 @@
 const express = require('express');
 const router = express.Router();
 const Cattle = require('../models/cattle');
+const cloudinary = require('cloudinary').v2;
+
+
+require('dotenv').config();
+
+const API_KEY = process.env.API_KEY;
+const API_SECRET = process.env.API_SECRET;
+const CLOUD_NAME = process.env.CLOUD_NAME;
+
+
+cloudinary.config({ 
+    cloud_name: CLOUD_NAME, 
+    api_key: API_KEY, 
+    api_secret: API_SECRET
+  });
+
 
 // Seed Route
 router.get('/cattle/seed', (req, res) =>{
-    const data = require('./data.json');
+    const data = require('../data.json');
     Cattle.deleteMany({}, (err, result) => {
         Cattle.insertMany(data, (err, result) => {
         res.redirect('/cattle');
@@ -38,11 +54,20 @@ router.delete('/cattle/:id', (req, res) => {
 
 // Update route
 router.put('/cattle/:id', (req, res) => {
+    console.log('api_key', API_KEY);
     req.body.completed = !req.body.completed;
-
-    Cattle.findByIdAndUpdate(req.params.id, req.body, (err, oldCattleVersion) => {
-      res.redirect('/cattle/' + req.params.id);  
-    });
+    const photo = req.files.image;
+    photo.mv(`./uploads/${photo.name}`);
+    cloudinary.uploader.upload(`./uploads/${photo.name}`).then(result => {
+          console.log(result)
+          req.body.img = result.secure_url
+          Cattle.findByIdAndUpdate(req.params.id, req.body, (err, oldCattleVersion) => {
+            res.redirect('/cattle/' + req.params.id);  
+          });
+    })
+    .catch(err => {
+        res.redirect('/');
+    });  
 });
 
 // Create route
@@ -59,7 +84,8 @@ router.post('/cattle', (req, res) => {
         });
     })
     .catch(err => {
-    res.redirect('/');
+        console.log('error in create', err);
+        res.redirect('/');
     });
 });
 
