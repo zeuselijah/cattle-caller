@@ -10,8 +10,32 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <title>Cattle List</title>
 </head>
-<body>
-    <h1>My Cattle List</h1>
+<body class="body">
+    <h1>My Herd</h1>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Cattle Caller</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/cattle/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/cattle/new">Add To The Herd</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/cattle/edit">Work That Cow</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     <div id="carouselExampleControls" class="carousel carousel-dark" data-bs-ride="carousel">
         <div class="carousel-inner">
             <% cattle.forEach(function(c, i) { %>
@@ -22,16 +46,9 @@
                                 <img src="<%= c.img %>" class="d-block w-100 " alt="...">
                             </a>     
                         </div>
-                        <!-- <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div> -->
                     <!-- </div> -->
-                </div>
+                </div>                
             <% }); %>
-            
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -42,7 +59,7 @@
             <span class="visually-hidden">Next</span>
         </button> 
     </div>
-    <a href="/cattle/new">Add to my list</a>
+    <a href="/cattle/new">Add To The Herd</a>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>

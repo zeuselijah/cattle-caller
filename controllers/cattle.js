@@ -26,8 +26,7 @@ router.get('/cattle/seed', (req, res) =>{
         Cattle.insertMany(data, (err, result) => {
         res.redirect('/cattle');
     });
-})
-    
+});   
 });
 
 // Index route

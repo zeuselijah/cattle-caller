@@ -29,3 +29,8 @@
 // } else {
 //   $(multipleCardCarousel).addClass("slide");
 // }
+
+
+       
+    
+   
