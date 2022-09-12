@@ -6,7 +6,6 @@ const cattleRouter = require('./controllers/cattle');
 const expressFileUpload = require('express-fileupload');
 
 
-//const methodOverride = require('method-override');
 
 // intialize the app
 const app = express();
@@ -36,11 +35,11 @@ app.use(express.static('public'));
 // mount routes
 
 // Homepage redirect route
-app.get('/', (req, res) => res.redirect('/cattle'));
+app.get('/', (req, res) => res.render('index.ejs'));
 
 
 // mount router/controller
-app.use(cattleRouter);
+app.use('/cattle',cattleRouter);
 
 
 // tell the app to listen

@@ -20,7 +20,7 @@ cloudinary.config({
 
 
 // Seed Route
-router.get('/cattle/seed', (req, res) =>{
+router.get('/seed', (req, res) =>{
     const data = require('../data.json');
     Cattle.deleteMany({}, (err, result) => {
         Cattle.insertMany(data, (err, result) => {
@@ -30,21 +30,21 @@ router.get('/cattle/seed', (req, res) =>{
 });
 
 // Index route
-router.get('/cattle', (req, res) => {
+router.get('/', (req, res) => {
     Cattle.find({}, (err, foundCattle) => {
-        res.render('index.ejs', { 
+        res.render('cattle/index.ejs', { 
             'cattle': foundCattle 
         });
     });
 });
 
 // New route
-router.get('/cattle/new', (req, res) => {
-    res.render('new.ejs');
+router.get('/new', (req, res) => {
+    res.render('cattle/new.ejs');
 });
 
 // Delete route
-router.delete('/cattle/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     Cattle.findByIdAndDelete(req.params.id, (err, deletedCattle) => {    
     console.log('deletecCattle: ', deletedCattle);
     res.redirect('/cattle');
@@ -52,7 +52,7 @@ router.delete('/cattle/:id', (req, res) => {
 });
 
 // Update route
-router.put('/cattle/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     console.log('api_key', API_KEY);
     req.body.completed = !req.body.completed;
     const photo = req.files.image;
@@ -63,14 +63,11 @@ router.put('/cattle/:id', (req, res) => {
           Cattle.findByIdAndUpdate(req.params.id, req.body, (err, oldCattleVersion) => {
             res.redirect('/cattle/' + req.params.id);  
           });
-    })
-    .catch(err => {
-        res.redirect('/');
-    });  
+    }) 
 });
 
 // Create route
-router.post('/cattle', (req, res) => {
+router.post('/', (req, res) => {
     console.log('its working');
     console.log('api key', API_KEY);
     const photo = req.files.image;
@@ -82,25 +79,21 @@ router.post('/cattle', (req, res) => {
              res.redirect('/cattle');
         });
     })
-    .catch(err => {
-        console.log('error in create', err);
-        res.redirect('/');
-    });
 });
 
 // Edit route
-router.get('/cattle/:id/edit', (req, res) => {
+router.get('/:id/edit', (req, res) => {
     Cattle.findById(req.params.id, (err, foundCattle) => {
-        res.render('edit.ejs', {
+        res.render('cattle/edit.ejs', {
             'cattle': foundCattle
         });
     });
 });
 
 // Show route
-router.get('/cattle/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     Cattle.findById(req.params.id, (err, foundCattle) => {
-        res.render('show.ejs', {'cattle': foundCattle})
+        res.render('cattle/show.ejs', {'cattle': foundCattle})
     });
 });
 
